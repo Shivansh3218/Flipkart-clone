@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { SearchProvider } from './Components/Context/SearchContext';
 import reportWebVitals from './reportWebVitals';
+import { FilterProvider } from './Components/Context/FilterContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <FilterProvider>
+    <SearchProvider>
+      <App />
+    </SearchProvider>
+  </FilterProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

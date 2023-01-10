@@ -1,7 +1,12 @@
 .App {
   text-align: center;
+  background-color: rgb(195, 98, 98);
 }
-
+.main-container{
+  display: flex ;
+  justify-content: space-between;
+  background-color: rgb(208, 208, 208);
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

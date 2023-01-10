@@ -1,0 +1,71 @@
+#main-content {
+    width: 75vw;
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  margin: 0.3rem;
+  flex-wrap: wrap;
+}
+.item-image {
+  width: 15vw;
+  height: 40vh;
+}
+hr{
+    width: 90%;
+}
+.brand-name{
+    color: gray;
+    text-align: start;
+    margin-bottom: -1rem;
+    margin-top: -2px;
+}
+.assured-img{
+  width: 3.5rem;
+  height: 1rem;
+}
+.product-name{
+font-size: 1rem;
+margin-top: 1.5rem;
+text-align: start;
+
+}
+.card {
+  width: 15vw;
+  padding: 10px;
+  margin: 0.5rem;
+}
+.prices {
+  display: flex;
+  margin-top: -2.5rem ;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.price {
+  font-size: medium;
+  font-weight: bold;
+}
+.small{
+    font-size: small;
+}
+.orignal-price {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.discount-rate {
+  color: green;
+  font-weight: bold;
+}
+
+.card:hover{
+    box-shadow: 2px 2px 10px 1px rgb(188, 184, 184);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+@media screen and (max-width:800px) {
+    #main-content {
+        width: 72vw;
+    }
+}

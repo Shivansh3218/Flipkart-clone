@@ -1,0 +1,132 @@
+#sidebar-section {
+  position: relative;
+  width: 20vw;
+  margin: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  left: 10px;
+}
+.filters{
+  margin: 0.5rem;
+}
+#filters-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.filterArr-items {
+  border: none;
+  padding: 5px;
+  margin: 6px;
+}
+.accordion{
+  width: 100%;
+  border: 1px solid black;
+}
+
+.tooltip .tooltiptext {
+  display: none;
+  width: 120px;
+  font-size: smaller;
+  background-color: rgb(86, 54, 54);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+#filter-heading {
+  font-size: large;
+  margin-left: 0.5rem;
+}
+.filter-section{
+  border-top: 1px solid rgb(126, 126, 126);
+  border-bottom: 1px solid rgb(72, 72, 72);
+  width: 100%;
+}
+.no-top{
+  border-top: 0px;
+}
+.noBorder {
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+}
+.tooltip:hover .tooltiptext {
+  display: inline-flex;
+}
+#categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+#categories-heading {
+  width: 40px;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  font-size: small;
+  font-weight: bold;
+}
+.catogory {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1rem;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+#btn-clearAll {
+  height: 1rem;
+  width: auto;
+  font-weight: 600;
+  font-size: small;
+  border: none;
+  background-color: inherit;
+  color: #2874f0;
+}
+button:hover{
+  color: #2874f0;
+}
+.clothing-btn,
+.gender-btn,
+.discount-btn {
+  font-size: small;
+  font-weight: bold;
+  margin: 1rem 0;
+  margin-left: 1rem;
+}
+.gender-btn {
+  margin-top: 1rem;
+}
+.show-all-btn {
+  color: #005ef5;
+  font-weight: bold;
+}
+#allBrands {
+  position: absolute;
+  width: 80vw;
+  background-color: white;
+}
+.brands-btn {
+  margin: 5px;
+  cursor: pointer;
+}
+#closePopup {
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: x-large;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width:800px) {
+  #filters-heading {
+    flex-direction: column;
+  }
+}
