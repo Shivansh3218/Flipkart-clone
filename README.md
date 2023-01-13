@@ -1,6 +1,11 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##This is product listing page of flipkart made without use of any external libraries which has the following functionalities:
+1. Search feature.
+2. Sort Products according to price high-To-Low or Low-to-High.
+3. Filters of Ideal for men or women, Sizes and Brands.
+4. Feature to clear all filters.
+5.Products are stored in JSON file.
 
 ## Available Scripts
 
