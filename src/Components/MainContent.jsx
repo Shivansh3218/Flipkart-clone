@@ -1,28 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { clothing } from "./Clothing";
 import assured from './Assets/assured.png'
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FilteredArrayContext } from "./Context/FilterArrayContext";
 import { SearchContext } from "./Context/SearchContext";
 
 import "./css/MainContent.css";
 
 function MainContent() {
+  //Search and filters to be applied on content
   const { search, handleSearch } = useContext(SearchContext);
   const { filters, setFilters } = useContext(FilteredArrayContext)
 
-  console.log(search, 'searcg')
+  //Sorting functions
   const [sort, setSort] = useState("highToLow")
 
   const handleSort = () => setSort('highToLow')
 
   const handleLowSort = () => setSort('lowToHigh')
 
+  //Filterd clothes
   let filteredClothing;
 
   search!==""? 
-  
+
      filteredClothing = clothing.filter((item)=>{
       if( item["Product Name"]
       .toLocaleLowerCase()
@@ -32,6 +34,8 @@ function MainContent() {
     })
   
 :
+//If filters applied filter using filters
+
    filteredClothing = clothing.filter((item) => {
 
     if(search!==""){

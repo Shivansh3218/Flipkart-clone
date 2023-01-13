@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import logo from "../Components/Assets/flipkartlogo.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import "./css/Header.css";
+
+import logo from "../Components/Assets/flipkartlogo.png";
 import { SearchContext } from "./Context/SearchContext";
+
+import "./css/Header.css";
+
 export default function Header() {
   const { search, handleSearch } = useContext(SearchContext);
 

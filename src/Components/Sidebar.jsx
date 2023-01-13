@@ -1,10 +1,13 @@
 import React, { useContext, useState } from "react";
+
 import { FilterContext } from "./Context/FilterContext";
 import { FilteredArrayContext } from "./Context/FilterArrayContext";
-import "./css/Sidebar.css";
 import assured from './Assets/assured.png'
 
+import "./css/Sidebar.css";
+
 function Sidebar() {
+  //States for rendering
   const [gendershow, setGenderShow] = useState(0);
   const [brandShow, setBrandShow] = useState(0);
   const [sizeShow, setSizeShow] = useState(0)
@@ -13,18 +16,19 @@ function Sidebar() {
   const [offer, setOffer] = useState(0)
   const [discountShow, setDiscountShow] = useState(0);
 
+  //states from different contexts to add or remove filters
   const { filterArr, handleAddFilter, handleFilterArr } =
     useContext(FilterContext);
-
   const { filters, setFilters } = useContext(FilteredArrayContext)
 
-
+//Filter array to be transfered
   let [array, addFilters] = useState({
     Brand: [],
     idealFor: [],
     Size: [],
   })
 
+  //Adding filters to items 
   addFilters = (type, value) => {
     if (!array[type].includes(value)) {
       array[type].push(value)
@@ -32,6 +36,7 @@ function Sidebar() {
     setFilters({ ...array })
   }
 
+  //Filters of sidebar stored in arrays
   const clothingGenderArr = ["Men", "Men & Women", "Women"];
 
   const offerArr= ['Buy More Save More', 'Special Price']
@@ -48,6 +53,7 @@ function Sidebar() {
     "60% or more",
   ];
 
+  //Conditonal rendering statements
   const handleGenderShow = () =>
     gendershow === 0 ? setGenderShow(1) : setGenderShow(0);
   const handleBrandShow = () =>
@@ -59,6 +65,7 @@ function Sidebar() {
     const handleOfferShow = () =>
     offer === 0 ? setOffer(1) : setOffer(0);
 
+    //clearing filter array
   const clearArr = () => {
     setFilters({
       Brand: [],
@@ -224,10 +231,7 @@ function Sidebar() {
             </div>
           ) : null}
           </section>
-
         </div>
-
-
 
         <div className="price-input">
           <div className="field">
@@ -236,7 +240,6 @@ function Sidebar() {
               onChange={(e) => {
                 setMinPrice(e.target.value)
               }}
-
               value={minPrice} className="input-min" />
           </div>
           <div className="separator">To</div>
