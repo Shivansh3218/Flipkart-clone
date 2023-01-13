@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-##This is product listing page of flipkart made without use of any external libraries which has the following functionalities:
+## This is product listing page of flipkart made without use of any external libraries which has the following functionalities:
 1. Search feature.
 2. Sort Products according to price high-To-Low or Low-to-High.
 3. Filters of Ideal for men or women, Sizes and Brands.
