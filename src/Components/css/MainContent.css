@@ -6,6 +6,12 @@
   margin: 0.3rem;
   flex-wrap: wrap;
 }
+.sort-menu{
+  width: 100%;
+  display: flex;
+  align-items: flex-start ;
+  padding-left: 2rem;
+}
 .item-image {
   width: 15vw;
   height: 40vh;

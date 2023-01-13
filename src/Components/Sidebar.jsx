@@ -1,44 +1,55 @@
 import React, { useContext, useState } from "react";
 import { FilterContext } from "./Context/FilterContext";
-import brandArr from "./Brand";
-
+import { FilteredArrayContext } from "./Context/FilterArrayContext";
 import "./css/Sidebar.css";
 
 function Sidebar() {
-  const [clothingshow, setClothingShow] = useState(0);
   const [gendershow, setGenderShow] = useState(0);
-  const [discountShow, setDiscountShow] = useState(0);
   const [brandShow, setBrandShow] = useState(0);
-  const [popup, setPopUp] = useState(0);
+  const [sizeShow, setSizeShow] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(200);
+  const [minPrice, setMinPrice] = useState(0);
+
   const { filterArr, handleAddFilter, handleFilterArr } =
     useContext(FilterContext);
 
-  const clothingCategoryArr = ["Shirt", "Pants", "Shorts", "Jeans"];
+  const { filters, setFilters } = useContext(FilteredArrayContext)
 
-  const clothingGenderArr = ["Men", "Men & Women", "Women", "Boys", "Girls"];
 
-  const clothingDiscountArr = [
-    "30% or more",
-    "40% or more",
-    "40% or more",
-    "50% or more",
-    "60% or more",
-  ];
+  let [array, addFilters] = useState({
+    Brand: [],
+    idealFor: [],
+    Size: [],
+  })
 
-  const clothingBrandArr = ["ADIDAS", "Wildcraft", "Jockey", "Puma"];
+  addFilters = (type, value) => {
+    if (!array[type].includes(value)) {
+      array[type].push(value)
+    }
+    setFilters({ ...array })
+  }
 
-  const handleClothingShow = () =>
-    clothingshow === 0 ? setClothingShow(1) : setClothingShow(0);
+  const clothingGenderArr = ["Men", "Men & Women", "Women"];
+
+  const clothingBrandArr = ["ADIDAS", "Wildcraft", "Jockey", "APPALON", 'Louis Philippe Jeans', "Fort Collins", 'Darzi', "FastColors"];
+
+  const clothingSizeArr = ['M', 'S', 'L', 'XL']
+
   const handleGenderShow = () =>
     gendershow === 0 ? setGenderShow(1) : setGenderShow(0);
-  const handleDiscountShow = () =>
-    discountShow === 0 ? setDiscountShow(1) : setDiscountShow(0);
   const handleBrandShow = () =>
     brandShow === 0 ? setBrandShow(1) : setBrandShow(0);
+  const handleSizeShow = () =>
+    sizeShow === 0 ? setSizeShow(1) : setSizeShow(0);
 
-  const openPopUp = () => {
-    popup === 0 ? setPopUp(1) : setPopUp(0);
-  };
+  const clearArr = () => {
+    setFilters({
+      Brand: [],
+      idealFor: [],
+      Size: []
+    }
+    )
+  }
 
   return (
     <>
@@ -48,7 +59,10 @@ function Sidebar() {
             <h1 id="filter-heading">Filters</h1>
             <button
               id="btn-clearAll"
-              onClick={handleFilterArr}
+              onClick={(e) => {
+                clearArr()
+                handleFilterArr(e)
+              }}
               className="noBorder"
             >
               CLEAR ALL
@@ -63,129 +77,142 @@ function Sidebar() {
           ) : null}
         </div>
 
-
-
         <div id="categories">
-
-           
           <h2 id="categories-heading">CATEGORIES</h2>
-          
-          <section className="filter-section">
-          <button
-            onClick={handleClothingShow}
-            className="noBorder clothing-btn tooltip"
-          >
-            Clothing and Acce...
-            <span className="tooltiptext">Clothing and Accessories</span>
-          </button>
-          {clothingshow === 1 ? (
-            <div className="catogory">
-              {clothingCategoryArr.map((item) => {
-                return (
-                  <button
-                    onClick={handleAddFilter}
-                    value={item}
-                    className="noBorder"
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
-           </section>
 
-           <section className="filter-section no-top">
-          <button onClick={handleGenderShow} className="noBorder gender-btn">
-            GENDER
-          </button>
-          {gendershow === 1 ? (
-            <div className="catogory">
-              {clothingGenderArr.map((item) => {
-                return (
-                  <button
-                    onClick={handleAddFilter}
-                    value={item}
-                    className="noBorder"
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
-          </section>
-
-<section className="filter-section no-top">
-          <button
-            onClick={handleDiscountShow}
-            className="noBorder discount-btn"
-          >
-            DISCOUNT
-          </button>
-          {discountShow === 1 ? (
-            <div className="catogory">
-              {clothingDiscountArr.map((item) => {
-                return (
-                  <button
-                    onClick={handleAddFilter}
-                    value={item}
-                    className="noBorder"
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
-          </section>
-          
           <section className="filter-section no-top">
-          <button onClick={handleBrandShow} className="noBorder discount-btn">
-            BRANDS
-          </button>
-          {brandShow === 1 ? (
-            <div className="catogory">
-              {clothingBrandArr.map((item) => {
-                return (
-                  <button
-                    onClick={handleAddFilter}
-                    value={item}
-                    className="noBorder"
-                  >
-                    {item}
-                  </button>
-                );
-              })}
-              <button onClick={openPopUp} className="show-all-btn noBorder">
-                Show All...
-              </button>
-              {popup == 1 ? (
-                <section id="allBrands">
-                  <h5>All brands</h5>
-                  <button onClick={openPopUp} id="closePopup">
-                    X
-                  </button>
-                  {brandArr.map((item) => {
-                    return (
-                      <button
-                        onClick={handleAddFilter}
-                        value={item}
-                        className="brands-btn"
-                      >
-                        {item}
-                      </button>
-                    );
-                  })}
-                </section>
-              ) : null}
-            </div>
-          ) : null}
+            <button onClick={handleGenderShow} className="noBorder gender-btn">
+              Ideal For
+            </button>
+            {gendershow === 1 ? (
+              <div className="catogory">
+                {clothingGenderArr.map((item) => {
+                  return (
+                    <button
+                      onClick={(e) => {
+                        addFilters('idealFor', e.target.value)
+                        handleAddFilter(e)
+                      }}
+                      value={item}
+                      className="noBorder"
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
           </section>
+
+          <section className="filter-section no-top">
+            <button onClick={handleBrandShow} className="noBorder discount-btn">
+              BRANDS
+            </button>
+            {brandShow === 1 ? (
+              <div className="catogory">
+                {clothingBrandArr.map((item) => {
+                  return (
+                    <button
+                      onClick={(e) => {
+                        addFilters('Brand', e.target.value)
+                        handleAddFilter(e)
+                      }}
+
+                      value={item}
+                      className="noBorder"
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+          </section>
+          <section className="filter-section no-top">
+            <button onClick={handleSizeShow} className="noBorder discount-btn">
+              SIZE
+            </button>
+            {sizeShow === 1 ? (
+              <div className="catogory flex">
+                {clothingSizeArr.map((item) => {
+                  return (
+                    <button
+                      onClick={(e) => {
+                        addFilters('Size', e.target.value)
+                        handleAddFilter(e)
+                      }}
+
+                      value={item}
+                      className="noBorder "
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+          </section>
+
+
+
         </div>
+
+
+
+        <div className="price-input">
+          <div className="field">
+            <span id="price-span">Min</span>
+            <input type="number"
+              onChange={(e) => {
+                // addFilters('minPrice', e.target.value)
+                setMinPrice(e.target.value)
+              }}
+
+              value={minPrice} className="input-min" />
+          </div>
+          <div className="separator">To</div>
+          <div className="field">
+            <span id="price-span">Max</span>
+            <input type="number" onChange={(e) => {
+              // addFilters('maxPrice', e.target.value)
+              setMaxPrice(e.target.value)
+            }} value={maxPrice} className="input-max" />
+          </div>
+        </div>
+        <div className="slider">
+          <div className="progress"></div>
+        </div>
+        <div className="range-input">
+          <input
+            type="range"
+            id="min-scroll"
+            value={minPrice}
+            onChange={(e) => {
+              // addFilters('minPrice', e.target.value)
+              setMinPrice(e.target.value)
+            }}
+            className="range-min"
+            min="0"
+            max={maxPrice}
+            step="1"
+          />
+          <input
+            type="range"
+            id="max-scroll"
+            value={maxPrice}
+            onChange={(e) => {
+              // addFilters('maxPrice', e.target.value)
+              setMaxPrice(e.target.value)
+            }}
+            className="range-max"
+            min={minPrice}
+            max="2000"
+            step="1"
+          />
+        </div>
+
       </section>
     </>
   );
 }
-
 export default Sidebar;

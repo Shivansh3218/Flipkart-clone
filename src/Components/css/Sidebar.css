@@ -124,6 +124,38 @@ button:hover{
   border: none;
   cursor: pointer;
 }
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center ;
+}
+.input-min, .input-max{
+  width: 45%;
+}
+.price-input{
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#price-span{
+  margin: 5px;
+}
+.range-input{
+display: flex;
+flex-direction: row;
+}
+#min-scroll{
+  z-index: 1;
+  background-color: #005ef5;
+  width: 50%;
+  color: #005ef5;
+
+}
+#max-scroll{
+  right: 10px;
+  width: 50%;
+}
 
 @media screen and (max-width:800px) {
   #filters-heading {

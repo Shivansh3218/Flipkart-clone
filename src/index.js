@@ -5,12 +5,15 @@ import App from './App';
 import { SearchProvider } from './Components/Context/SearchContext';
 import reportWebVitals from './reportWebVitals';
 import { FilterProvider } from './Components/Context/FilterContext';
+import { FilteredArrayProvider } from './Components/Context/FilterArrayContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <FilterProvider>
     <SearchProvider>
-      <App />
+      <FilteredArrayProvider>
+        <App />
+      </FilteredArrayProvider>
     </SearchProvider>
   </FilterProvider>
 );
