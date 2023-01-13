@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { FilterContext } from "./Context/FilterContext";
 import { FilteredArrayContext } from "./Context/FilterArrayContext";
 import "./css/Sidebar.css";
+import assured from './Assets/assured.png'
 
 function Sidebar() {
   const [gendershow, setGenderShow] = useState(0);
@@ -9,6 +10,8 @@ function Sidebar() {
   const [sizeShow, setSizeShow] = useState(0)
   const [maxPrice, setMaxPrice] = useState(200);
   const [minPrice, setMinPrice] = useState(0);
+  const [offer, setOffer] = useState(0)
+  const [discountShow, setDiscountShow] = useState(0);
 
   const { filterArr, handleAddFilter, handleFilterArr } =
     useContext(FilterContext);
@@ -31,9 +34,19 @@ function Sidebar() {
 
   const clothingGenderArr = ["Men", "Men & Women", "Women"];
 
+  const offerArr= ['Buy More Save More', 'Special Price']
+
   const clothingBrandArr = ["ADIDAS", "Wildcraft", "Jockey", "APPALON", 'Louis Philippe Jeans', "Fort Collins", 'Darzi', "FastColors"];
 
   const clothingSizeArr = ['M', 'S', 'L', 'XL']
+  
+  const clothingDiscountArr = [
+    "30% or more",
+    "40% or more",
+    "40% or more",
+    "50% or more",
+    "60% or more",
+  ];
 
   const handleGenderShow = () =>
     gendershow === 0 ? setGenderShow(1) : setGenderShow(0);
@@ -41,6 +54,10 @@ function Sidebar() {
     brandShow === 0 ? setBrandShow(1) : setBrandShow(0);
   const handleSizeShow = () =>
     sizeShow === 0 ? setSizeShow(1) : setSizeShow(0);
+    const handleDiscountShow = () =>
+    discountShow === 0 ? setDiscountShow(1) : setDiscountShow(0);
+    const handleOfferShow = () =>
+    offer === 0 ? setOffer(1) : setOffer(0);
 
   const clearArr = () => {
     setFilters({
@@ -50,6 +67,7 @@ function Sidebar() {
     }
     )
   }
+
 
   return (
     <>
@@ -82,7 +100,7 @@ function Sidebar() {
 
           <section className="filter-section no-top">
             <button onClick={handleGenderShow} className="noBorder gender-btn">
-              Ideal For
+              IDEAL FOR
             </button>
             {gendershow === 1 ? (
               <div className="catogory">
@@ -128,6 +146,7 @@ function Sidebar() {
               </div>
             ) : null}
           </section>
+
           <section className="filter-section no-top">
             <button onClick={handleSizeShow} className="noBorder discount-btn">
               SIZE
@@ -153,7 +172,58 @@ function Sidebar() {
             ) : null}
           </section>
 
+          <section className="filter-section no-top">
+            <button onClick={handleOfferShow} className="noBorder discount-btn">
+              OFFERS
+            </button>
+            {offer === 1 ? (
+              <div className="catogory ">
+                {offerArr.map((item) => {
+                  return (
+                    <button
+                      onClick={(e) => {
+                        handleAddFilter(e)
+                      }}
 
+                      value={item}
+                      className="noBorder "
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+          </section>
+
+          <section className="filter-section align no-top">
+            <input type="checkbox" />
+            <img src={assured} id='image-assured' alt="assured logo" />
+          </section>
+
+          <section className="filter-section no-top">
+          <button
+            onClick={handleDiscountShow}
+            className="noBorder discount-btn"
+          >
+            DISCOUNT
+          </button>
+          {discountShow === 1 ? (
+            <div className="catogory">
+              {clothingDiscountArr.map((item) => {
+                return (
+                  <button
+                    onClick={handleAddFilter}
+                    value={item}
+                    className="noBorder"
+                  >
+                    {item}
+                  </button>
+                );
+              })}
+            </div>
+          ) : null}
+          </section>
 
         </div>
 
@@ -164,7 +234,6 @@ function Sidebar() {
             <span id="price-span">Min</span>
             <input type="number"
               onChange={(e) => {
-                // addFilters('minPrice', e.target.value)
                 setMinPrice(e.target.value)
               }}
 
@@ -174,7 +243,6 @@ function Sidebar() {
           <div className="field">
             <span id="price-span">Max</span>
             <input type="number" onChange={(e) => {
-              // addFilters('maxPrice', e.target.value)
               setMaxPrice(e.target.value)
             }} value={maxPrice} className="input-max" />
           </div>
@@ -188,7 +256,6 @@ function Sidebar() {
             id="min-scroll"
             value={minPrice}
             onChange={(e) => {
-              // addFilters('minPrice', e.target.value)
               setMinPrice(e.target.value)
             }}
             className="range-min"
@@ -201,7 +268,6 @@ function Sidebar() {
             id="max-scroll"
             value={maxPrice}
             onChange={(e) => {
-              // addFilters('maxPrice', e.target.value)
               setMaxPrice(e.target.value)
             }}
             className="range-max"

@@ -40,11 +40,18 @@ li {
   justify-content: space-around;
   align-items: center;
 }
-
+#subNav{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
 @media screen and (max-width: 900px) {
   #main-logo {
     width: 5%;
-    height: 12vh;
+    height: 3vh;
   }
   li {
     font-size: smaller;
@@ -52,7 +59,12 @@ li {
   .search-container {
     width: 30%;
   }
-
+#nav-links{
+  display: none ;
+}
+.search-container{
+  width: 50%;
+}
   #search-input {
     width: 90%;
     height: 2rem;

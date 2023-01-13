@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <>
       <section className="main">
-        <img src={logo} id="main-logo" alt="flipkart logo image" />
+        <img src={logo} id="main-logo" alt="flipkart logo " />
         <div className="search-container">
           <input
             value={search}

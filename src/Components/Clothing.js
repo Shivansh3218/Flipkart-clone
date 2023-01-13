@@ -131,6 +131,8 @@ export const clothing = [
   },
   {
     "Product Name": "Addidas womens casual's",
+    'Original Prices': '1,999',
+    'Discount rates': '80% off',
     "Price": 649,
     "Brand": "ADIDAS",
     "Size": "L",

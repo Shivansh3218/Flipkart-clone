@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { clothing } from "./Clothing";
 import assured from './Assets/assured.png'
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FilteredArrayContext } from "./Context/FilterArrayContext";
 import { SearchContext } from "./Context/SearchContext";
 
@@ -11,13 +12,35 @@ function MainContent() {
   const { search, handleSearch } = useContext(SearchContext);
   const { filters, setFilters } = useContext(FilteredArrayContext)
 
+  console.log(search, 'searcg')
   const [sort, setSort] = useState("highToLow")
 
   const handleSort = () => setSort('highToLow')
 
   const handleLowSort = () => setSort('lowToHigh')
 
-  let filteredClothing = clothing.filter((item) => {
+  let filteredClothing;
+
+  search!==""? 
+  
+     filteredClothing = clothing.filter((item)=>{
+      if( item["Product Name"]
+      .toLocaleLowerCase()
+      .includes(search)){
+        return item
+      }
+    })
+  
+:
+   filteredClothing = clothing.filter((item) => {
+
+    if(search!==""){
+      if( item["Product Name"]
+      .toLocaleLowerCase()
+      .includes(search)){
+        return item
+      }
+    }
 
     let shouldReturn = true
 
@@ -65,10 +88,11 @@ function MainContent() {
           &nbsp;  &nbsp;
           <span onClick={handleLowSort}>Low to High</span>
         </div>
-        {filteredClothing.map((item, index) => {
+        {filteredClothing.map((item) => {
           return (
             <>
               <div className="card" key={Date.now()}>
+                <FavoriteIcon sx={{position:'absolute' , color:'rgb(172, 63, 63)'}}/>
                 <img
                   className="item-image"
                   src={item["Image URLS"]}

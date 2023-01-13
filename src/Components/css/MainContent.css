@@ -8,9 +8,13 @@
 }
 .sort-menu{
   width: 100%;
+  margin: 0.5rem;
   display: flex;
   align-items: flex-start ;
   padding-left: 2rem;
+}
+span{
+  cursor: pointer;
 }
 .item-image {
   width: 15vw;
